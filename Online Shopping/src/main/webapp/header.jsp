@@ -23,7 +23,7 @@
 	<div class="container-fluid text-center"
 		style="margin-top: 45px; background-color: #33cc33; color: white; padding: 5px;">
 		<h2>Rockstar Electronics</h2>
-		<h6>We specialize in Electronics Items</h6>
+		<h6>We specialize in Electronics Items.</h6>
 		<form class="form-inline" action="index.jsp" method="get">
 			<div class="input-group">
 				<input type="text" class="form-control" size="50" name="search"
