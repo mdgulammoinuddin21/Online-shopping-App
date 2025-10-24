@@ -20,7 +20,8 @@ public class CartServiceImpl implements CartService {
 		String status = "Failed to Add into Cart";
 
 		Connection con = DBUtil.provideConnection();
-
+		int a=10;
+		
 		PreparedStatement ps = null;
 		PreparedStatement ps2 = null;
 		ResultSet rs = null;
