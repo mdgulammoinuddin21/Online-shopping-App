@@ -68,9 +68,9 @@ public class CartServiceImpl implements CartService {
 				}
 			}
 
-		} catch (SQLException e) {
-			status = "Error: " + e.getMessage();
-			e.printStackTrace();
+		} catch (SQLException ex) {
+			status = "Error: " + ex.getMessage();
+			ex.printStackTrace();
 		}
 
 		DBUtil.closeConnection(con);
