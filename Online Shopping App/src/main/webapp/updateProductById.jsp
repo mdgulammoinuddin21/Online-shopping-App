@@ -1,80 +1,310 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Update Product</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/changes.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body style="background-color: #E6F9E6;">
-	<%
-	/* Checking the user credentials */
-	String userType = (String) session.getAttribute("usertype");
-	String userName = (String) session.getAttribute("username");
-	String password = (String) session.getAttribute("password");
 
-	if (userType == null || !userType.equals("admin")) {
-		response.sendRedirect("login.jsp?message=Access Denied, Login As Admin!!");
-		return;
-
-	} else if (userName == null || password == null) {
-		response.sendRedirect("login.jsp?message=Session Expired, Login Again!!");
-		return;
+<style>
+	* {
+		font-family: 'Poppins', sans-serif;
 	}
-	%>
+	
+	body {
+		background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+		min-height: 100vh;
+		padding-bottom: 50px;
+	}
+	
+	.update-by-id-container {
+		margin-top: 50px;
+		margin-bottom: 30px;
+	}
+	
+	.update-by-id-card {
+		background: linear-gradient(135deg, #ffffff 0%, #fff5f0 100%);
+		border: none;
+		border-radius: 20px;
+		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+		padding: 40px;
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.update-by-id-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 5px;
+		background: linear-gradient(90deg, #FF9800 0%, #FFC107 50%, #FF9800 100%);
+	}
+	
+	.update-by-id-header {
+		text-align: center;
+		margin-bottom: 35px;
+	}
+	
+	.update-by-id-header h2 {
+		color: #FF9800;
+		font-weight: 700;
+		font-size: 2.5rem;
+		margin-bottom: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 15px;
+	}
+	
+	.update-by-id-header h2 i {
+		color: #FF9800;
+		font-size: 2.2rem;
+		animation: rotate 3s linear infinite;
+	}
+	
+	@keyframes rotate {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+	
+	.update-by-id-header p {
+		color: #666;
+		font-size: 1rem;
+		margin-top: 5px;
+	}
+	
+	.info-box {
+		background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+		border-left: 4px solid #FF9800;
+		padding: 15px 20px;
+		border-radius: 10px;
+		margin-bottom: 25px;
+		color: #E65100;
+		font-weight: 500;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+	
+	.info-box i {
+		font-size: 1.5rem;
+	}
+	
+	.message-box {
+		background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+		border-left: 4px solid #2196F3;
+		padding: 15px 20px;
+		border-radius: 10px;
+		margin-bottom: 25px;
+		color: #1976D2;
+		font-weight: 500;
+		animation: slideIn 0.5s ease-out;
+	}
+	
+	@keyframes slideIn {
+		from {
+			opacity: 0;
+			transform: translateY(-10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	
+	.form-label {
+		font-weight: 600;
+		color: #333;
+		margin-bottom: 8px;
+		font-size: 0.95rem;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	
+	.form-label i {
+		color: #FF9800;
+		font-size: 0.9rem;
+	}
+	
+	.form-control {
+		border: 2px solid #e0e0e0;
+		border-radius: 10px;
+		padding: 12px 15px;
+		font-size: 0.95rem;
+		transition: all 0.3s ease;
+		background-color: #fff;
+	}
+	
+	.form-control:focus {
+		border-color: #FF9800;
+		box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.15);
+		background-color: #fffbf5;
+	}
+	
+	.form-control:hover {
+		border-color: #FFC107;
+	}
+	
+	.input-group-custom {
+		margin-bottom: 20px;
+	}
+	
+	.btn-custom {
+		padding: 12px 40px;
+		font-weight: 600;
+		font-size: 1rem;
+		border-radius: 10px;
+		border: none;
+		transition: all 0.3s ease;
+		min-width: 140px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+	}
+	
+	.btn-cancel {
+		background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+		color: white;
+	}
+	
+	.btn-cancel:hover {
+		background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+		color: white;
+	}
+	
+	.btn-update {
+		background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+		color: white;
+	}
+	
+	.btn-update:hover {
+		background: linear-gradient(135deg, #F57C00 0%, #E65100 100%);
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+		color: white;
+	}
+	
+	.button-container {
+		margin-top: 30px;
+		display: flex;
+		gap: 15px;
+		justify-content: center;
+	}
+	
+	/* Responsive */
+	@media (max-width: 768px) {
+		.update-by-id-card {
+			padding: 25px;
+		}
+		
+		.update-by-id-header h2 {
+			font-size: 1.8rem;
+		}
+		
+		.button-container {
+			flex-direction: column;
+		}
+		
+		.btn-custom {
+			width: 100%;
+		}
+	}
+</style>
 
-	<jsp:include page="header.jsp" />
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<%
+/* Checking the user credentials */
+String userType = (String) session.getAttribute("usertype");
+String userName = (String) session.getAttribute("username");
+String password = (String) session.getAttribute("password");
 
-	<%
-	String message = request.getParameter("message");
-	%>
-	<div class="container">
-		<div class="row"
-			style="margin-top: 5px; margin-left: 2px; margin-right: 2px;">
-			<form action="updateProduct.jsp" method="post"
-				class="col-md-4 col-md-offset-4"
-				style="border: 2px solid black; border-radius: 10px; background-color: #FFE5CC; padding: 10px;">
-				<div style="font-weight: bold;" class="text-center">
-					<h3 style="color: green;">Product Update Form</h3>
-					<%
-					if (message != null) {
-					%>
-					<p style="color: blue;">
-						<%=message%>
-					</p>
-					<%
-					}
-					%>
+if (userType == null || !userType.equals("admin")) {
+response.sendRedirect("login.jsp?message=Access Denied, Login As Admin!!");
+return;
+
+} else if (userName == null || password == null) {
+response.sendRedirect("login.jsp?message=Session Expired, Login Again!!");
+return;
+}
+%>
+
+<jsp:include page="header.jsp" />
+
+<%
+String message = request.getParameter("message");
+%>
+
+<div class="container update-by-id-container">
+	<div class="row justify-content-center">
+		<div class="col-lg-5 col-md-7 col-sm-9">
+			<div class="update-by-id-card">
+				<div class="update-by-id-header">
+					<h2>
+						<i class="fas fa-sync-alt"></i>
+						Product Update Form
+					</h2>
+					<p>Enter Product ID to update details</p>
 				</div>
-				<div></div>
-				<div class="row">
-					<div class="col-md-12 form-group">
-						<label for="last_name">Product Id</label> <input type="text"
-							placeholder="Enter Product Id" name="prodid" class="form-control"
-							id="last_name" required>
-					</div>
+				
+				<div class="info-box">
+					<i class="fas fa-info-circle"></i>
+					<span>Please enter the Product ID to proceed with updates</span>
 				</div>
-				<div class="row">
-					<div class="col-md-6 text-center" style="margin-bottom: 2px;">
-						<a href="adminViewProduct.jsp" class="btn btn-info">Cancel</a>
-					</div>
-					<div class="col-md-6 text-center">
-						<button type="submit" class="btn btn-danger">Update
-							Product</button>
-					</div>
+				
+				<%
+				if (message != null) {
+				%>
+				<div class="message-box">
+					<i class="fas fa-exclamation-circle"></i> <%=message%>
 				</div>
-			</form>
+				<%
+				}
+				%>
+				
+				<form action="updateProduct.jsp" method="post">
+					<div class="input-group-custom">
+						<label for="prodid" class="form-label">
+							<i class="fas fa-barcode"></i> Product ID
+						</label>
+						<input type="text" name="prodid" class="form-control" 
+							id="prodid" placeholder="Enter Product ID" required>
+					</div>
+					
+					<div class="button-container">
+						<a href="adminViewProduct.jsp" class="btn btn-cancel">
+							<i class="fas fa-times-circle"></i> Cancel
+						</a>
+						<button type="submit" class="btn btn-update">
+							<i class="fas fa-edit"></i> Update Product
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
+</div>
 
-	<%@ include file="footer.html"%>
+<%@ include file="footer.html"%>
 </body>
 </html>
