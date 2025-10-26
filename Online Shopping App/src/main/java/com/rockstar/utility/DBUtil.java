@@ -73,9 +73,9 @@ public class DBUtil {
 					e.printStackTrace();
 				}
 			}
-		} catch (SQLException e) {
+		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ex.printStackTrace();
 		}
 	}
 }
