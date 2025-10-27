@@ -3,7 +3,7 @@ pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
+<title>Supplier Registration</title>
 <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Font Awesome 6 -->
@@ -18,18 +18,18 @@ pageEncoding="ISO-8859-1"%>
 	}
 	
 	body {
-		background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+		background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
 		min-height: 100vh;
 		padding-bottom: 50px;
 	}
 	
-	.login-container {
+	.register-container {
 		margin-top: 50px;
 		margin-bottom: 30px;
 	}
 	
-	.login-card {
-		background: linear-gradient(135deg, #ffffff 0%, #fff5f0 100%);
+	.register-card {
+		background: linear-gradient(135deg, #ffffff 0%, #fff8f0 100%);
 		border: none;
 		border-radius: 20px;
 		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
@@ -38,23 +38,23 @@ pageEncoding="ISO-8859-1"%>
 		overflow: hidden;
 	}
 	
-	.login-card::before {
+	.register-card::before {
 		content: '';
 		position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;
 		height: 5px;
-		background: linear-gradient(90deg, #00008B 0%, #4169E1 50%, #00008B 100%);
+		background: linear-gradient(90deg, #FF6F00 0%, #FFA000 50%, #FF6F00 100%);
 	}
 	
-	.login-header {
+	.register-header {
 		text-align: center;
 		margin-bottom: 35px;
 	}
 	
-	.login-header h2 {
-		color: #00008B;
+	.register-header h2 {
+		color: #FF6F00;
 		font-weight: 700;
 		font-size: 2.5rem;
 		margin-bottom: 10px;
@@ -64,24 +64,24 @@ pageEncoding="ISO-8859-1"%>
 		gap: 15px;
 	}
 	
-	.login-header h2 i {
-		color: #28a745;
+	.register-header h2 i {
+		color: #FF6F00;
 		font-size: 2.2rem;
 	}
 	
-	.login-header p {
+	.register-header p {
 		color: #666;
 		font-size: 1rem;
 		margin-top: 5px;
 	}
 	
 	.message-box {
-		background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-		border-left: 4px solid #2196F3;
+		background: linear-gradient(135deg, #FFE0B2 0%, #FFCC80 100%);
+		border-left: 4px solid #FF6F00;
 		padding: 15px 20px;
 		border-radius: 10px;
 		margin-bottom: 25px;
-		color: #1976D2;
+		color: #E65100;
 		font-weight: 500;
 		animation: slideIn 0.5s ease-out;
 	}
@@ -108,11 +108,11 @@ pageEncoding="ISO-8859-1"%>
 	}
 	
 	.form-label i {
-		color: #00008B;
+		color: #FF6F00;
 		font-size: 0.9rem;
 	}
 	
-	.form-control, .form-select {
+	.form-control {
 		border: 2px solid #e0e0e0;
 		border-radius: 10px;
 		padding: 12px 15px;
@@ -121,22 +121,22 @@ pageEncoding="ISO-8859-1"%>
 		background-color: #fff;
 	}
 	
-	.form-control:focus, .form-select:focus {
-		border-color: #00008B;
-		box-shadow: 0 0 0 0.2rem rgba(0, 0, 139, 0.15);
-		background-color: #f8f9ff;
+	.form-control:focus {
+		border-color: #FF6F00;
+		box-shadow: 0 0 0 0.2rem rgba(255, 111, 0, 0.15);
+		background-color: #fff8f5;
 	}
 	
-	.form-control:hover, .form-select:hover {
-		border-color: #4169E1;
+	.form-control:hover {
+		border-color: #FFA000;
 	}
 	
 	.input-group-custom {
 		margin-bottom: 20px;
 	}
 	
-	.btn-login {
-		background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+	.btn-register {
+		background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
 		color: white;
 		padding: 12px 50px;
 		font-weight: 600;
@@ -152,83 +152,44 @@ pageEncoding="ISO-8859-1"%>
 		margin-top: 10px;
 	}
 	
-	.btn-login:hover {
-		background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);
+	.btn-register:hover {
+		background: linear-gradient(135deg, #E65100 0%, #FF6F00 100%);
 		transform: translateY(-2px);
-		box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+		box-shadow: 0 6px 20px rgba(255, 111, 0, 0.4);
 		color: white;
 	}
 	
-	.register-link {
+	.login-link {
 		text-align: center;
 		margin-top: 25px;
 		padding-top: 25px;
 		border-top: 2px dashed #e0e0e0;
 	}
 	
-	.register-link a {
-		color: #00008B;
+	.login-link a {
+		color: #FF6F00;
 		font-weight: 600;
 		text-decoration: none;
 		transition: all 0.3s ease;
 	}
 	
-	.register-link a:hover {
-		color: #4169E1;
+	.login-link a:hover {
+		color: #FF8F00;
 		text-decoration: underline;
-	}
-	
-	/* Password toggle */
-	.password-toggle {
-		position: absolute;
-		right: 15px;
-		top: 50%;
-		transform: translateY(-50%);
-		cursor: pointer;
-		color: #999;
-		transition: color 0.3s ease;
-	}
-	
-	.password-toggle:hover {
-		color: #00008B;
 	}
 	
 	.position-relative {
 		position: relative;
 	}
 	
-	/* Role selector styling */
-	.form-select {
-		cursor: pointer;
-		appearance: none;
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-		background-repeat: no-repeat;
-		background-position: right 15px center;
-		padding-right: 40px;
-	}
-	
 	/* Responsive */
 	@media (max-width: 768px) {
-		.login-card {
+		.register-card {
 			padding: 25px;
 		}
 		
-		.login-header h2 {
+		.register-header h2 {
 			font-size: 1.8rem;
-		}
-	}
-	
-	/* Icon animations */
-	.login-header i {
-		animation: bounce 2s infinite;
-	}
-	
-	@keyframes bounce {
-		0%, 100% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-10px);
 		}
 	}
 </style>
@@ -244,16 +205,16 @@ pageEncoding="ISO-8859-1"%>
 String message = request.getParameter("message");
 %>
 
-<div class="container login-container">
+<div class="container register-container">
 	<div class="row justify-content-center">
-		<div class="col-lg-5 col-md-7 col-sm-9">
-			<div class="login-card">
-				<div class="login-header">
+		<div class="col-lg-6 col-md-8 col-sm-10">
+			<div class="register-card">
+				<div class="register-header">
 					<h2>
-						<i class="fas fa-sign-in-alt"></i>
-						Login Form
+						<i class="fas fa-store"></i>
+						Supplier Registration
 					</h2>
-					<p>Welcome back! Please login to your account</p>
+					<p>Create your supplier account to start managing products</p>
 				</div>
 				
 				<%
@@ -266,13 +227,53 @@ String message = request.getParameter("message");
 				}
 				%>
 				
-				<form action="./LoginSrv" method="post">
+				<form action="./SupplierRegisterSrv" method="post">
 					<div class="input-group-custom">
 						<label for="username" class="form-label">
-							<i class="fas fa-user"></i> Username
+							<i class="fas fa-user"></i> Full Name
 						</label>
-						<input type="email" name="username" class="form-control" 
-							id="username" placeholder="Enter your email" required>
+						<input type="text" name="username" class="form-control" 
+							id="username" placeholder="Enter your full name" required>
+					</div>
+					
+					<div class="input-group-custom">
+						<label for="email" class="form-label">
+							<i class="fas fa-envelope"></i> Email ID
+						</label>
+						<input type="email" name="email" class="form-control" 
+							id="email" placeholder="Enter your email" required>
+					</div>
+					
+					<div class="input-group-custom">
+						<label for="companyname" class="form-label">
+							<i class="fas fa-building"></i> Company Name
+						</label>
+						<input type="text" name="companyname" class="form-control" 
+							id="companyname" placeholder="Enter your company name" required>
+					</div>
+					
+					<div class="input-group-custom">
+						<label for="mobile" class="form-label">
+							<i class="fas fa-phone"></i> Mobile Number
+						</label>
+						<input type="text" name="mobile" class="form-control" 
+							id="mobile" placeholder="Enter your mobile number" required>
+					</div>
+					
+					<div class="input-group-custom">
+						<label for="address" class="form-label">
+							<i class="fas fa-home"></i> Address
+						</label>
+						<textarea name="address" class="form-control" 
+							id="address" rows="3" placeholder="Enter your address" required></textarea>
+					</div>
+					
+					<div class="input-group-custom">
+						<label for="pincode" class="form-label">
+							<i class="fas fa-map-pin"></i> Pin Code
+						</label>
+						<input type="text" name="pincode" class="form-control" 
+							id="pincode" placeholder="Enter your pin code" required>
 					</div>
 					
 					<div class="input-group-custom">
@@ -286,22 +287,21 @@ String message = request.getParameter("message");
 					</div>
 					
 					<div class="input-group-custom">
-						<label for="userrole" class="form-label">
-							<i class="fas fa-user-tag"></i> Login As
+						<label for="confirmPassword" class="form-label">
+							<i class="fas fa-lock"></i> Confirm Password
 						</label>
-						<select name="usertype" id="userrole" class="form-select" required>
-							<option value="customer" selected>CUSTOMER</option>
-							<option value="admin">ADMIN</option>
-							<option value="supplier">SUPPLIER</option>
-						</select>
+						<div class="position-relative">
+							<input type="password" name="confirmPassword" class="form-control" 
+								id="confirmPassword" placeholder="Confirm your password" required>
+						</div>
 					</div>
 					
-					<button type="submit" class="btn btn-login">
-						<i class="fas fa-sign-in-alt"></i> Login
+					<button type="submit" class="btn btn-register">
+						<i class="fas fa-user-plus"></i> Register as Supplier
 					</button>
 					
-					<div class="register-link">
-						<p>Don't have an account? <a href="register.jsp">Register here</a></p>
+					<div class="login-link">
+						<p>Already have an account? <a href="login.jsp">Login here</a></p>
 					</div>
 				</form>
 			</div>
@@ -313,3 +313,4 @@ String message = request.getParameter("message");
 
 </body>
 </html>
+

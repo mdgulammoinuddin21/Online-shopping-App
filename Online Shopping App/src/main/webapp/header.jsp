@@ -414,7 +414,7 @@
 		</div>
 	</nav>
 	<%
-	} else { //ADMIN HEADER
+	} else if ("admin".equalsIgnoreCase(userType)) { //ADMIN HEADER
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top">
 		<div class="container-fluid">
@@ -481,6 +481,40 @@
 							<li><a class="dropdown-item" href="updateProductById.jsp">
 								<i class="fas fa-sync-alt"></i> Update Product</a></li>
 						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./LogoutSrv">
+							<i class="fas fa-sign-out-alt"></i> Logout
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<%
+	} else { //SUPPLIER HEADER
+	%>
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="supplierHome.jsp">
+				<i class="fas fa-home"></i>Supplier Center
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarNav" aria-controls="navbarNav" 
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="supplierHome.jsp">
+							<i class="fas fa-boxes"></i> My Products
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="supplierAddProduct.jsp">
+							<i class="fas fa-plus-circle"></i> Add Product
+						</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="./LogoutSrv">

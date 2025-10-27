@@ -55,6 +55,38 @@ public class LoginSrv extends HttpServlet {
 				rd.include(request, response);
 			}
 
+		} else if (userType.equals("supplier")) { // Login as Supplier
+
+			com.rockstar.service.impl.SupplierServiceImpl sdao = new com.rockstar.service.impl.SupplierServiceImpl();
+
+			status = sdao.isValidCredential(userName, password);
+
+			if (status.equalsIgnoreCase("valid")) {
+				// valid supplier
+
+				com.rockstar.beans.SupplierBean supplier = sdao.getSupplierDetails(userName, password);
+
+				HttpSession session = request.getSession();
+
+				session.setAttribute("supplierdata", supplier);
+
+				session.setAttribute("username", userName);
+				session.setAttribute("password", password);
+				session.setAttribute("usertype", userType);
+
+				RequestDispatcher rd = request.getRequestDispatcher("supplierHome.jsp");
+
+				rd.forward(request, response);
+
+			} else {
+				// invalid supplier;
+
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp?message=" + status);
+
+				rd.forward(request, response);
+
+			}
+
 		} else { // Login as customer
 
 			UserServiceImpl udao = new UserServiceImpl();

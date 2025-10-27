@@ -16,6 +16,7 @@ public class ProductBean implements Serializable {
 	private double prodPrice;
 	private int prodQuantity;
 	private InputStream prodImage;
+	private String supplierId;
 
 	public ProductBean(String prodId, String prodName, String prodType, String prodInfo, double prodPrice,
 			int prodQuantity, InputStream prodImage) {
@@ -27,6 +28,19 @@ public class ProductBean implements Serializable {
 		this.prodPrice = prodPrice;
 		this.prodQuantity = prodQuantity;
 		this.prodImage = prodImage;
+	}
+
+	public ProductBean(String prodId, String prodName, String prodType, String prodInfo, double prodPrice,
+			int prodQuantity, InputStream prodImage, String supplierId) {
+		super();
+		this.prodId = prodId;
+		this.prodName = prodName;
+		this.prodType = prodType;
+		this.prodInfo = prodInfo;
+		this.prodPrice = prodPrice;
+		this.prodQuantity = prodQuantity;
+		this.prodImage = prodImage;
+		this.supplierId = supplierId;
 	}
 
 	public String getProdId() {
@@ -83,6 +97,14 @@ public class ProductBean implements Serializable {
 
 	public void setProdImage(InputStream prodImage) {
 		this.prodImage = prodImage;
+	}
+
+	public String getSupplierId() {
+		return supplierId;
+	}
+
+	public void setSupplierId(String supplierId) {
+		this.supplierId = supplierId;
 	}
 
 }

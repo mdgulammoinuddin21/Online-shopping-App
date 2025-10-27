@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.rockstar.beans.ProductBean;
 import com.rockstar.service.impl.ProductServiceImpl;
 
 /**
@@ -56,8 +57,20 @@ public class AddProductSrv extends HttpServlet {
 		InputStream prodImage = inputStream;
 
 		ProductServiceImpl product = new ProductServiceImpl();
-
-		status = product.addProduct(prodName, prodType, prodInfo, prodPrice, prodQuantity, prodImage);
+		
+		// Create product with supplier ID as null for admin-added products
+		String prodId = com.rockstar.utility.IDUtil.generateId();
+		ProductBean prodBean = new ProductBean();
+		prodBean.setProdId(prodId);
+		prodBean.setProdName(prodName);
+		prodBean.setProdType(prodType);
+		prodBean.setProdInfo(prodInfo);
+		prodBean.setProdPrice(prodPrice);
+		prodBean.setProdQuantity(prodQuantity);
+		prodBean.setProdImage(prodImage);
+		prodBean.setSupplierId(null); // Admin products have no supplier
+		
+		status = product.addProduct(prodBean);
 
 		RequestDispatcher rd = request.getRequestDispatcher("addProduct.jsp?message=" + status);
 		rd.forward(request, response);
